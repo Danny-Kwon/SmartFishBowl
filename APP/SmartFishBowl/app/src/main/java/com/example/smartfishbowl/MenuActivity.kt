@@ -21,9 +21,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.setHomeAsUpIndicator(R.drawable.menu)
         supportActionBar?.setDisplayShowTitleEnabled(false)
-
         drawerLayout = findViewById(R.id.activity_drawer)
-
         navigationView = findViewById(R.id.main_navigationView)
         navigationView.setNavigationItemSelectedListener(this)
     }
@@ -44,7 +42,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
             }
             R.id.item2 -> {
-
+                finish()
             }
             R.id.item3 -> {
 
