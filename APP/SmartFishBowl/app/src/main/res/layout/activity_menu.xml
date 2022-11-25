@@ -40,11 +40,13 @@
                     android:layout_height="100dp"
                     android:src="@drawable/fish_bowl"/>
                 <TextView
+                    android:id="@+id/bowl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
                     android:textSize="20sp"
                     android:text="현재 어항: 1"/>
+
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -70,11 +72,22 @@
                     android:layout_height="100dp"
                     android:src="@drawable/temperature"/>
                 <TextView
+                    android:id="@+id/tmp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
                     android:textSize="20sp"
                     android:text="온도: 30"/>
+                <Button
+                    android:id="@+id/change_tmp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:theme="@style/ButtonStyle"
+                    android:background="@color/cyan200"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/colorAccent"
+                    android:text="값 수정"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -100,11 +113,22 @@
                     android:layout_height="100dp"
                     android:src="@drawable/water_height"/>
                 <TextView
+                    android:id="@+id/hgt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
                     android:textSize="20sp"
                     android:text="수위: 25CM"/>
+                <Button
+                    android:id="@+id/change_hgt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:theme="@style/ButtonStyle"
+                    android:background="@color/cyan200"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/colorAccent"
+                    android:text="값 수정"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -130,11 +154,22 @@
                     android:layout_height="100dp"
                     android:src="@drawable/ph"/>
                 <TextView
+                    android:id="@+id/ph"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
                     android:textSize="20sp"
                     android:text="PH: 1"/>
+                <Button
+                    android:id="@+id/change_ph"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:theme="@style/ButtonStyle"
+                    android:background="@color/cyan200"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/colorAccent"
+                    android:text="값 수정"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -160,11 +195,22 @@
                     android:layout_height="100dp"
                     android:src="@drawable/pure"/>
                 <TextView
+                    android:id="@+id/drt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
                     android:textSize="20sp"
                     android:text="탁도: 1"/>
+                <Button
+                    android:id="@+id/change_drt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:theme="@style/ButtonStyle"
+                    android:background="@color/cyan200"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/colorAccent"
+                    android:text="값 수정"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -190,11 +236,22 @@
                     android:layout_height="100dp"
                     android:src="@drawable/fish_bowl"/>
                 <TextView
+                    android:id="@+id/fd"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
                     android:textSize="20sp"
                     android:text="먹이: 3시간"/>
+                <Button
+                    android:id="@+id/change_fd"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:theme="@style/ButtonStyle"
+                    android:background="@color/cyan200"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/regular"
+                    android:textColor="@color/colorAccent"
+                    android:text="값 수정"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
     </GridLayout>
