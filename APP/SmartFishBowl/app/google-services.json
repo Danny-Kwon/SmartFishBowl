@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "880173459008",
+    "project_id": "fishbowl-369411",
+    "storage_bucket": "fishbowl-369411.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:880173459008:android:298fb6cadbc3c0701a21a5",
+        "android_client_info": {
+          "package_name": "com.example.smartfishbowl"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "880173459008-k75g0v6boa0siuukd4p95d6pvhlkpb86.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCLbWMwiLwsdJUFg4c4ai5s13ScbCX9z6s"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "880173459008-k75g0v6boa0siuukd4p95d6pvhlkpb86.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
