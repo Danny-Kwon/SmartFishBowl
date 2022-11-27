@@ -145,7 +145,8 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
             }
             R.id.item2 -> {
-                finish()
+                val intent = Intent(this, SearchBluetoothActivity::class.java)
+                startActivity(intent)
             }
             R.id.item3 -> {
 

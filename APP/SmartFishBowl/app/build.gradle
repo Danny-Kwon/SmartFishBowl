@@ -90,6 +90,8 @@ dependencies {
     implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:20.1.2'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
 
+    implementation 'no.nordicsemi.android:ble-ktx:2.6.0-alpha03'
+
     //종속성 충돌 해결
 //    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
 }

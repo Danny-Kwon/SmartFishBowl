@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/depth1"
-    tools:context=".SendWifiActivity">
-<ImageView
-    android:id="@+id/wifi_send_logo"
-    app:layout_constraintTop_toTopOf="parent"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:src="@drawable/send_wifi_logo"/>
+    tools:context=".SearchBluetoothActivity">
+    <ImageView
+        android:id="@+id/wifi_send_logo"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/send_wifi_logo"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -23,24 +23,25 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginEnd="20dp"
-            android:layout_marginTop="30dp"
             android:hint="WIFI SSID"/>
         <EditText
             android:id="@+id/wifi_password"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:inputType="textPassword"
+            android:layout_margin="20dp"
             android:hint="WIFI Password"/>
         <Button
-            android:id="@+id/wifi_send_button"
+            android:id="@+id/start_bluetooth"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginTop="20dp"
+            android:layout_margin="5dp"
+            android:text="Turn On / Off the Bluetooth"
+            android:theme="@style/ButtonStyle"/>
+        <Button
+            android:id="@+id/scan_bluetooth"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
             android:text="Press To Send Wifi Info"
             android:theme="@style/ButtonStyle"/>
     </LinearLayout>

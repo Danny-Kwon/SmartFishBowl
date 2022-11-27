@@ -12,8 +12,10 @@
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/activity_menu.xml" value="0.2220609579100145" />
+        <entry key="app/src/main/res/layout/activity_search_bluetooth.xml" value="0.23802083333333332" />
         <entry key="app/src/main/res/layout/activity_send_wifi.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/alertdialog_edittext.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/bluetooth_recyclerview.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/bowl_grid_item.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/drawer_header.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/drawer_layout.xml" value="0.2520833333333333" />

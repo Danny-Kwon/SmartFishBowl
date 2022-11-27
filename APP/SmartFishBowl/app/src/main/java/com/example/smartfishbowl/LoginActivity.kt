@@ -44,7 +44,8 @@ class LoginActivity : AppCompatActivity() {
         }
 
         binding.googleLogin.setOnClickListener {
-            val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://jungwoo.bowl.p-e.kr:8080/oauth2/authorization/google"))
+            //val intent = Intent(Intent.ACTION_VIEW, Uri.parse("http://jungwoo.bowl.p-e.kr:8080/oauth2/authorization/google"))
+            val intent = Intent(this, MenuActivity::class.java)
             startActivity(intent)
         }
     }
