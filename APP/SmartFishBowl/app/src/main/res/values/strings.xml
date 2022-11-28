@@ -2,4 +2,6 @@
     <string name="app_name">SmartFishBowl</string>
     <string name="msg_token_fmt" />
     <string name="default_notification_channel_id">notification_channel</string>
+    <string name="client_id">607680018436-vh9n8arb3hnje3nt7pokp97d3seaphlj.apps.googleusercontent.com</string>
+    <string name="client_secret">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</string>
 </resources>

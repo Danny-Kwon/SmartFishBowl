@@ -1,33 +1,41 @@
 {
   "project_info": {
-    "project_number": "880173459008",
-    "project_id": "fishbowl-369411",
-    "storage_bucket": "fishbowl-369411.appspot.com"
+    "project_number": "607680018436",
+    "project_id": "webdb-368205",
+    "storage_bucket": "webdb-368205.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:880173459008:android:298fb6cadbc3c0701a21a5",
+        "mobilesdk_app_id": "1:607680018436:android:1220f0459a75f84102dd51",
         "android_client_info": {
           "package_name": "com.example.smartfishbowl"
         }
       },
       "oauth_client": [
         {
-          "client_id": "880173459008-k75g0v6boa0siuukd4p95d6pvhlkpb86.apps.googleusercontent.com",
+          "client_id": "607680018436-vh9n8arb3hnje3nt7pokp97d3seaphlj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.smartfishbowl",
+            "certificate_hash": "d97a3e77e62d0353fc076ff307b73ebb04c098c4"
+          }
+        },
+        {
+          "client_id": "607680018436-o42518i3i26ghp88h92mbabf0371a79m.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyCLbWMwiLwsdJUFg4c4ai5s13ScbCX9z6s"
+          "current_key": "AIzaSyBOK_Q0ImTM529mQIB5BQddzJTryKiZAYQ"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "880173459008-k75g0v6boa0siuukd4p95d6pvhlkpb86.apps.googleusercontent.com",
+              "client_id": "607680018436-8eo1cp3eeav4nj9fjfj1u869sqeblv5h.apps.googleusercontent.com",
               "client_type": 3
             }
           ]
