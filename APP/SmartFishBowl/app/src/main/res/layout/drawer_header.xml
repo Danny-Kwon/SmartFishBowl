@@ -15,19 +15,21 @@
         android:src="@drawable/main_logo"/>
 
     <TextView
+        android:id="@+id/header_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="20sp"
         android:textStyle="bold"
         android:textColor="#000000"
         android:fontFamily="@font/bold"
-        android:text="Kwon Min Hyeok"/>
+        android:text="스마트 어항 관리 서비스"/>
 
     <TextView
+        android:id="@+id/header_account"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="15sp"
         android:textColor="#EB554C4C"
         android:fontFamily="@font/thin"
-        android:text="danny9kwon@gmail.com"/>
+        android:text="default@gmail.com"/>
 </LinearLayout>

@@ -4,22 +4,36 @@ import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.Toolbar
 import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import androidx.lifecycle.ViewModelProvider
+import com.example.smartfishbowl.api.APIS
+import com.example.smartfishbowl.api.CurrentDevice
+import com.example.smartfishbowl.api.Getting
+import com.example.smartfishbowl.api.Setting
 import com.example.smartfishbowl.databinding.AlertdialogEdittextBinding
+import com.example.smartfishbowl.sharedpreferences.PreferencesUtil
 import com.example.smartfishbowl.viewmodel.BowlViewModel
 import com.google.android.material.navigation.NavigationView
+import com.kakao.sdk.user.UserApiClient
 import kotlinx.android.synthetic.main.activity_drawer.*
 import kotlinx.android.synthetic.main.activity_menu.*
+import kotlinx.android.synthetic.main.drawer_header.*
+import kotlinx.android.synthetic.main.drawer_header.view.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var navigationView: NavigationView
     lateinit var drawerLayout: DrawerLayout
     lateinit var viewModel: BowlViewModel
+    private val apis = APIS.create()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_drawer)
@@ -31,7 +45,26 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         drawerLayout = findViewById(R.id.activity_drawer)
         navigationView = findViewById(R.id.main_navigationView)
         navigationView.setNavigationItemSelectedListener(this)
-        //bowl.text = api. XXX or prefs.setString
+        val pref = PreferencesUtil(applicationContext)
+        UserApiClient.instance.me { user, _ ->
+            user?.kakaoAccount?.email?.let { pref.setString("Email", it) }
+            user?.kakaoAccount?.email?.let { Log.d("카카오이메일이름", it) }
+        }
+        bowl.text = ("현재 어항: " + pref.getString("CurrentDevice", "error"))
+        val curD = CurrentDevice("", 1)
+        apis.getValues(curD).enqueue(object : Callback<Getting>{
+            override fun onResponse(call: Call<Getting>, response: Response<Getting>) {
+                if(response.body()!=null){
+                    tmp_cur.text = response.body()!!.tmp
+                    hgt_cur.text = response.body()!!.hgt
+                    ph_cur.text = response.body()!!.ph
+                    drt_cur.text = response.body()!!.drt
+                }
+            }
+            override fun onFailure(call: Call<Getting>, t: Throwable) {
+                Log.d("Get_Values", t.message.toString())
+            }
+        })
         change_tmp.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
@@ -42,7 +75,9 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setView(builderItem.root)
                 setPositiveButton("확인"){ _: DialogInterface, _: Int ->
                     if(edittext.text!=null) {
-                        tmp.text = edittext.text
+                        tmp.text = "희망 온도: ${edittext.text} ℃"
+                        pref.setString("tmp", tmp.text.toString())
+                        settingValue()
                     }
                 }
                 setNegativeButton("취소"){ _: DialogInterface, _: Int ->
@@ -61,7 +96,9 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setView(builderItem.root)
                 setPositiveButton("확인"){ _: DialogInterface, _: Int ->
                     if(edittext.text!=null) {
-                        hgt.text = edittext.text
+                        hgt.text = "희망 수위: ${edittext.text} CM"
+                        pref.setString("hgt", hgt.text.toString())
+                        settingValue()
                     }
                 }
                 setNegativeButton("취소"){ _: DialogInterface, _: Int ->
@@ -80,7 +117,9 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setView(builderItem.root)
                 setPositiveButton("확인"){ _: DialogInterface, _: Int ->
                     if(edittext.text!=null) {
-                        ph.text = edittext.text
+                        ph.text = "희망 PH: ${edittext.text}"
+                        pref.setString("ph", ph.text.toString())
+                        settingValue()
                     }
                 }
                 setNegativeButton("취소"){ _: DialogInterface, _: Int ->
@@ -99,7 +138,9 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setView(builderItem.root)
                 setPositiveButton("확인"){ _: DialogInterface, _: Int ->
                     if(edittext.text!=null) {
-                        drt.text = edittext.text
+                        drt.text = "희망 탁도: ${edittext.text}"
+                        pref.setString("drt", drt.text.toString())
+                        settingValue()
                     }
                 }
                 setNegativeButton("취소"){ _: DialogInterface, _: Int ->
@@ -108,31 +149,14 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 show()
             }
         }
-        change_fd.setOnClickListener {
-            val builder = AlertDialog.Builder(this)
-            val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
-            val edittext = builderItem.editText
-            with(builder){
-                setTitle("먹이 공급 주기 변경")
-                setMessage("먹이 공급 주기를 입력하세요.")
-                setView(builderItem.root)
-                setPositiveButton("확인"){ _: DialogInterface, _: Int ->
-                    if(edittext.text!=null) {
-                        fd.text = edittext.text
-                    }
-                }
-                setNegativeButton("취소"){ _: DialogInterface, _: Int ->
-                    Toast.makeText(context, "먹이 공급 주기 변경 취소", Toast.LENGTH_SHORT).show()
-                }
-                show()
-            }
-        }
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        val pref = PreferencesUtil(applicationContext)
         when(item.itemId){
             android.R.id.home -> {
                 activity_drawer.openDrawer(GravityCompat.START)
+                drawer_header.header_account.text = pref.getString("Email", "No Email")
             }
         }
         return super.onOptionsItemSelected(item)
@@ -145,17 +169,43 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 startActivity(intent)
             }
             R.id.item2 -> {
-                val intent = Intent(this, SearchBluetoothActivity::class.java)
+                val intent = Intent(this, TimeActivity::class.java)
                 startActivity(intent)
             }
             R.id.item3 -> {
-
+                UserApiClient.instance.logout { error ->
+                    if (error != null) {
+                        Toast.makeText(this, "로그아웃 실패 $error", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "로그아웃 성공", Toast.LENGTH_SHORT).show()
+                    }
+                    val intent = Intent(this, LoginActivity::class.java)
+                    startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                    finish()
+                }
             }
             R.id.item4 -> {
-
+                viewModel = ViewModelProvider(this)[BowlViewModel::class.java]
+                viewModel.deleteAll()
+                UserApiClient.instance.unlink { error ->
+                    if (error != null) {
+                        Toast.makeText(this, "회원 탈퇴 실패 $error", Toast.LENGTH_SHORT).show()
+                    } else {
+                        Toast.makeText(this, "회원 탈퇴 성공", Toast.LENGTH_SHORT).show()
+                        val intent = Intent(this, LoginActivity::class.java)
+                        startActivity(intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP))
+                        finish()
+                    }
+                }
             }
         }
         return false
+    }
+
+    override fun onResume() {
+        super.onResume()
+        val pref = PreferencesUtil(applicationContext)
+        bowl.text = ("현재 어항: " + pref.getString("CurrentDevice", "error"))
     }
 
     override fun onBackPressed() { //뒤로가기 처리
@@ -164,5 +214,24 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         } else{
             super.onBackPressed()
         }
+    }
+    private fun settingValue(){
+        val pref = PreferencesUtil(applicationContext)
+        val setting = Setting(
+            pref.getString("JWT", "error"),
+            pref.getString("tmp", "error"),
+            pref.getString("hgt", "error"),
+            pref.getString("ph", "error"),
+            pref.getString("drt", "error")
+        )
+        apis.settingValue(setting).enqueue(object : Callback<String>{
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                Log.d("Setting_Response", response.body().toString())
+            }
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                Log.d("log", t.message.toString())
+                Log.d("sendSetting", "FAIL")
+            }
+        })
     }
 }

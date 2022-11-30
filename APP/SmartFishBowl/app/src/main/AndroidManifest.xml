@@ -4,19 +4,10 @@
     package="com.example.smartfishbowl"
     tools:ignore="CoarseFineLocation">
 
-    <uses-permission android:name="android.permission.BLUETOOTH_CONNECT" />
-    <uses-permission android:name="android.permission.BLUETOOTH_SCAN" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.BLUETOOTH" />
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-
-    <uses-feature
-        android:name="android.hardware.bluetooth_le"
-        android:required="true" />
 
     <application
+        android:name=".GlobalApplication"
         android:allowBackup="true"
         android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
@@ -26,7 +17,7 @@
         android:theme="@style/Theme.SmartFishBowl"
         android:usesCleartextTraffic="true">
         <activity
-            android:name=".SearchBluetoothActivity"
+            android:name=".TimeActivity"
             android:exported="false" />
         <!--
      Set custom default icon. This is used when no icon is set for incoming notification messages.
@@ -67,6 +58,21 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity
+            android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"
+            android:exported="true"
+            android:launchMode="singleTask">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="oauth"
+                    android:scheme="kakao48fd6279a270d186c4afb28950eec450" />
+            </intent-filter>
+        </activity>
 
         <service
             android:name=".firebasemessageservice.MyFirebaseMessagingService"
@@ -75,6 +81,10 @@
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="kakao48fd6279a270d186c4afb28950eec450" />
     </application>
 
 </manifest>

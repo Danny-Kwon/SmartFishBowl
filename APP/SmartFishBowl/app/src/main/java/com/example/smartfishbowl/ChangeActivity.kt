@@ -3,26 +3,35 @@ package com.example.smartfishbowl
 import android.content.DialogInterface
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.smartfishbowl.adapter.BowlAdapter
+import com.example.smartfishbowl.api.APIS
+import com.example.smartfishbowl.api.CurrentDevice
 import com.example.smartfishbowl.database.BowlData
 import com.example.smartfishbowl.databinding.ActivityChangeBinding
 import com.example.smartfishbowl.databinding.AlertdialogEdittextBinding
+import com.example.smartfishbowl.sharedpreferences.PreferencesUtil
 import com.example.smartfishbowl.viewmodel.BowlViewModel
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class ChangeActivity : AppCompatActivity() {
     lateinit var recyclerViewAdapter: BowlAdapter
     lateinit var viewModel: BowlViewModel
+    private val apis = APIS.create()
     private val binding by lazy {
         ActivityChangeBinding.inflate(layoutInflater)
     }
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
+        val prefs = PreferencesUtil(applicationContext)
         binding.addBowl.setOnClickListener {
             val builder = AlertDialog.Builder(this)
             val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
@@ -33,7 +42,7 @@ class ChangeActivity : AppCompatActivity() {
                 setView(builderItem.root)
                 setPositiveButton("확인"){ _: DialogInterface, _: Int ->
                     if(edittext.text!=null) {
-                        viewModel.insertBowl(BowlData(edittext.text.toString(), "1"))
+                        viewModel.insertBowl(BowlData(edittext.text.toString(), prefs.getString("JWT", "error")))
                     }
                 }
                 setNegativeButton("취소"){ _:DialogInterface, _: Int ->
@@ -77,6 +86,17 @@ class ChangeActivity : AppCompatActivity() {
         recyclerViewAdapter.setOnItemClickListener(object : BowlAdapter.OnItemClickListener{
             override fun onItemClick(v: View, data: String, pos: Int) {
                 Toast.makeText(this@ChangeActivity, data, Toast.LENGTH_SHORT).show()
+                val dev = CurrentDevice(prefs.getString("JWT", "error"), data.toLong())
+                prefs.setString("CurrentDevice", data)
+                apis.currentDevice(dev).enqueue(object : Callback<String>{
+                    override fun onResponse(call: Call<String>, response: Response<String>) {
+                        Log.d("Device_Response", response.body().toString())
+                    }
+                    override fun onFailure(call: Call<String>, t: Throwable) {
+                        Log.d("log", t.message.toString())
+                        Log.d("sendDevice", "FAIL")
+                    }
+                })
             }
         })
     }

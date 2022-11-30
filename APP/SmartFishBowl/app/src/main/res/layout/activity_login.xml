@@ -21,13 +21,14 @@
         app:layout_constraintTop_toBottomOf="@id/main_logo"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/google_login"/>
+        app:layout_constraintBottom_toTopOf="@id/kakao_login"/>
 
-    <Button
-        android:id="@+id/google_login"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:background="@drawable/btn_signin_google"
+    <ImageButton
+        android:id="@+id/kakao_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/kakao_login_medium_wide"
+        android:background="@android:color/transparent"
         android:text="GOOGLE LOGIN"
         android:textColor="@color/white"
         android:layout_marginStart="20dp"
@@ -36,14 +37,5 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"/>
-
-    <Button
-        android:id="@+id/getTkn"
-        android:theme="@style/ButtonStyle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:text="test"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

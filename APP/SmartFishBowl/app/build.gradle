@@ -89,6 +89,9 @@ dependencies {
     implementation 'com.google.firebase:firebase-messaging-ktx:23.1.0'
     implementation 'com.google.firebase:firebase-inappmessaging-display-ktx:20.1.2'
     implementation 'com.google.firebase:firebase-analytics-ktx:21.0.0'
+
+    //kakao
+    implementation "com.kakao.sdk:v2-user:2.10.0"
     //종속성 충돌 해결
 //    implementation 'com.google.guava:listenablefuture:9999.0-empty-to-avoid-conflict-with-guava'
 }

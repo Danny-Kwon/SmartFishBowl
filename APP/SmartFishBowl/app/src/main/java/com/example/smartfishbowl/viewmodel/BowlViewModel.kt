@@ -8,7 +8,6 @@ import com.example.smartfishbowl.database.BowlDatabase
 
 class BowlViewModel(app: Application) : AndroidViewModel(app) {
     var allBowls : MutableLiveData<List<BowlData>> = MutableLiveData()
-
     fun getAllIdsObservers(): MutableLiveData<List<BowlData>> {
         return allBowls
     }
@@ -17,7 +16,7 @@ class BowlViewModel(app: Application) : AndroidViewModel(app) {
         val bowlDao = BowlDatabase.getDatabase((getApplication())).bowlDao()
         val list = bowlDao.getAllId()
 
-        allBowls.postValue(list!!)
+        allBowls.postValue(list)
     }
 
     fun insertBowl(entity: BowlData){

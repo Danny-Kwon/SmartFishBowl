@@ -4,9 +4,9 @@
         android:icon = "@drawable/change"
         android:title = "어항 변경"
         />
-    <item android:id="@+id/item2"
-        android:icon="@drawable/wifi_img"
-        android:title="와이파이 변경"
+    <item
+        android:id="@+id/item2"
+        android:title="먹이 시간 설정"
         />
     <item android:id = "@+id/item3"
         android:icon = "@drawable/log_out"
