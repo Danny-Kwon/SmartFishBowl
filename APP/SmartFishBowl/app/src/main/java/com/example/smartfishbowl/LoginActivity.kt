@@ -31,7 +31,7 @@ class LoginActivity : AppCompatActivity() {
         setContentView(binding.root)
         initFirebase()
         binding.kakaoLogin.setOnClickListener {
-            val intent = Intent(this, MenuActivity::class.java)
+            val intent = Intent(this, ChangeActivity::class.java)
             lifecycleScope.launch{
                 try {
                     val oAuthToken = UserApiClient.loginWithKakao(this@LoginActivity)

@@ -53,7 +53,7 @@ interface APIS {
 
     //jwtToken, deviceId, Localtime 첫번째 시간, 두번째 시간, 세번째 시간
     companion object { // static 처럼 공유객체로 사용가능함. 모든 인스턴스가 공유하는 객체로서 동작함.
-        private const val BASE_URL = "http://172.16.236.73:8080/" // 주소
+        private const val BASE_URL = "http://124.60.219.83:8080/" // 주소
 
         fun create(): APIS {
             val gson : Gson = GsonBuilder().setLenient().create()

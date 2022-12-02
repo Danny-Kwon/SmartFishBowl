@@ -51,10 +51,11 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             user?.kakaoAccount?.email?.let { Log.d("카카오이메일이름", it) }
         }
         bowl.text = "현재 어항: " + pref.getString("CurrentDevice", "0")
-        first_time.text = "첫번째 시간: " + pref.getString("FirstHour", "0") + "시 " + pref.getString("FirstMinute", "0") + "분"
-        second_time.text = "두번째 시간: "+pref.getString("SecondHour", "0") + "시 " + pref.getString("SecondMinute", "0") + "분"
-        third_time.text = "세번째 시간: "+pref.getString("ThirdHour", "0") + "시 " + pref.getString("ThirdMinute", "0") + "분"
-        val curD = CurrentDevice(pref.getString("CurrentDevice", "0").toIntOrNull())
+        first_time.text = "첫번째 시간: " + pref.getInt("FirstHour", 0) + "시 " + pref.getInt("FirstMinute", 0) + "분, " + pref.getInt("FirstTotal", 0) + "회"
+        second_time.text = "두번째 시간: "+pref.getInt("SecondHour", 0) + "시 " + pref.getInt("SecondMinute", 0) + "분, "+ pref.getInt("SecondTotal", 0) + "회"
+        third_time.text = "세번째 시간: "+pref.getInt("ThirdHour", 0) + "시 " + pref.getInt("ThirdMinute", 0) + "분, "+ pref.getInt("ThirdTotal", 0) + "회"
+        Log.d("CURRENTDEVICE", pref.getString("CurrentDevice", "0"))
+        val curD = CurrentDevice(pref.getString("CurrentDevice", "0").toLong())
         apis.getValues("Bearer " + pref.getString("JWT", "error"), curD).enqueue(object : Callback<Getting>{
             override fun onResponse(call: Call<Getting>, response: Response<Getting>) {
                 if(response.body()!=null){
@@ -213,10 +214,10 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onResume()
         val pref = PreferencesUtil(applicationContext)
         bowl.text = ("현재 어항: " + pref.getString("CurrentDevice", "0"))
-        first_time.text = "첫번째 시간: " + pref.getString("FirstHour", "0") + "시 " + pref.getString("FirstMinute", "0") + "분, " + pref.getString("FirstTotal", "0") + "회"
-        second_time.text = "두번째 시간: "+pref.getString("SecondHour", "0") + "시 " + pref.getString("SecondMinute", "0") + "분, "+ pref.getString("SecondTotal", "0") + "회"
-        third_time.text = "세번째 시간: "+pref.getString("ThirdHour", "0") + "시 " + pref.getString("ThirdMinute", "0") + "분, "+ pref.getString("ThirdTotal", "0") + "회"
-        val curD = CurrentDevice(pref.getString("CurrentDevice", "0").toIntOrNull())
+        first_time.text = "첫번째 시간: " + pref.getInt("FirstHour", 0) + "시 " + pref.getInt("FirstMinute", 0) + "분, " + pref.getInt("FirstTotal", 0) + "회"
+        second_time.text = "두번째 시간: "+pref.getInt("SecondHour", 0) + "시 " + pref.getInt("SecondMinute", 0) + "분, "+ pref.getInt("SecondTotal", 0) + "회"
+        third_time.text = "세번째 시간: "+pref.getInt("ThirdHour", 0) + "시 " + pref.getInt("ThirdMinute", 0) + "분, "+ pref.getInt("ThirdTotal", 0) + "회"
+        val curD = CurrentDevice(pref.getString("CurrentDevice", "0").toLong())
         apis.getValues("Bearer " + pref.getString("JWT", "error"), curD).enqueue(object : Callback<Getting>{
             override fun onResponse(call: Call<Getting>, response: Response<Getting>) {
                 if(response.body()!=null){
@@ -246,11 +247,11 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun settingValue(){
         val pref = PreferencesUtil(applicationContext)
         val setting = Setting(
-            pref.getString("tmp", "error").toDouble(),
-            pref.getString("hgt", "error").toInt(),
-            pref.getString("ph", "error").toDouble(),
-            pref.getString("drt", "error").toDouble(),
-            pref.getString("CurrentDevice", "error").toInt()
+            pref.getString("tmp", "0").toDouble(),
+            pref.getString("hgt", "0").toInt(),
+            pref.getString("ph", "0").toDouble(),
+            pref.getString("drt", "0").toDouble(),
+            pref.getString("CurrentDevice", "0").toLong()
         )
         apis.settingValue("Bearer " + pref.getString("JWT", "error"), setting).enqueue(object : Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {

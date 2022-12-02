@@ -50,6 +50,16 @@
             android:layout_height="wrap_content"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/add_bowl"
+            app:layout_constraintEnd_toStartOf="@id/enter_next"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/ic_baseline_horizontal_rule_24"
+            android:theme="@style/ButtonStyle"/>
+        <ImageButton
+            android:id="@+id/enter_next"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/delete_bowl"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             android:src="@drawable/ic_baseline_horizontal_rule_24"

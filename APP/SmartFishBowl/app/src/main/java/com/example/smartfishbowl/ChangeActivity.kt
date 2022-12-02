@@ -1,6 +1,7 @@
 package com.example.smartfishbowl
 
 import android.content.DialogInterface
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
@@ -72,6 +73,12 @@ class ChangeActivity : AppCompatActivity() {
                 show()
             }
         }
+
+        binding.enterNext.setOnClickListener {
+            val intent = Intent(this, MenuActivity::class.java)
+            startActivity(intent)
+        }
+
         binding.rcv.apply {
             layoutManager = GridLayoutManager(this@ChangeActivity, 2)
             recyclerViewAdapter = BowlAdapter()
@@ -86,7 +93,7 @@ class ChangeActivity : AppCompatActivity() {
         recyclerViewAdapter.setOnItemClickListener(object : BowlAdapter.OnItemClickListener{
             override fun onItemClick(v: View, data: String, pos: Int) {
                 Toast.makeText(this@ChangeActivity, data, Toast.LENGTH_SHORT).show()
-                val dev = CurrentDevice(data.toIntOrNull())
+                val dev = CurrentDevice(data.toLong())
                 prefs.setString("CurrentDevice", data)
                 apis.currentDevice("Bearer " + prefs.getString("JWT","error"),dev).enqueue(object : Callback<String>{
                     override fun onResponse(call: Call<String>, response: Response<String>) {
