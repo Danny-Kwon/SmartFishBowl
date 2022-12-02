@@ -225,7 +225,7 @@ class TimeActivity : AppCompatActivity() {
         val firstTime: LocalTime = LocalTime.of(pref.getInt("FirstHour", 0), pref.getInt("FirstMinute", 0))
         val secondTime: LocalTime = LocalTime.of(pref.getInt("SecondHour", 0), pref.getInt("SecondMinute", 0))
         val thirdTime: LocalTime = LocalTime.of(pref.getInt("SecondHour", 0), pref.getInt("ThirdMinute", 0))
-        val foodSetting = FoodSetting(pref.getString("CurrentDevice", "_").toLong(), firstTime, secondTime, thirdTime, pref.getInt("FirstTotal", 0), pref.getInt("SecondTotal", 0), pref.getInt("ThirdTotal", 0))
+        val foodSetting = FoodSetting(pref.getString("CurrentDevice", "0").toIntOrNull(), firstTime, secondTime, thirdTime, pref.getInt("FirstTotal", 0), pref.getInt("SecondTotal", 0), pref.getInt("ThirdTotal", 0))
             apis.setTime("Bearer " + pref.getString("JWT", "error"), foodSetting).enqueue(object : Callback<String>{
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     Log.d("Response", response.body().toString())

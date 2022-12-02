@@ -86,7 +86,7 @@ class ChangeActivity : AppCompatActivity() {
         recyclerViewAdapter.setOnItemClickListener(object : BowlAdapter.OnItemClickListener{
             override fun onItemClick(v: View, data: String, pos: Int) {
                 Toast.makeText(this@ChangeActivity, data, Toast.LENGTH_SHORT).show()
-                val dev = CurrentDevice(data.toLong())
+                val dev = CurrentDevice(data.toIntOrNull())
                 prefs.setString("CurrentDevice", data)
                 apis.currentDevice("Bearer " + prefs.getString("JWT","error"),dev).enqueue(object : Callback<String>{
                     override fun onResponse(call: Call<String>, response: Response<String>) {

@@ -50,11 +50,11 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             user?.kakaoAccount?.email?.let { pref.setString("Email", it) }
             user?.kakaoAccount?.email?.let { Log.d("카카오이메일이름", it) }
         }
-        bowl.text = "현재 어항: " + pref.getString("CurrentDevice", "error")
-        first_time.text = "첫번째 시간: " + pref.getInt("FirstHour", 0).toString() + "시 " + pref.getInt("FirstMinute", 0).toString() + "분"
-        second_time.text = "두번째 시간: "+pref.getInt("SecondHour", 0).toString() + "시 " + pref.getInt("SecondMinute", 0).toString() + "분"
-        third_time.text = "세번째 시간: "+pref.getInt("ThirdHour", 0).toString() + "시 " + pref.getInt("ThirdMinute", 0).toString() + "분"
-        val curD = CurrentDevice(pref.getString("CurrentDevice", "0").toLong())
+        bowl.text = "현재 어항: " + pref.getString("CurrentDevice", "0")
+        first_time.text = "첫번째 시간: " + pref.getString("FirstHour", "0") + "시 " + pref.getString("FirstMinute", "0") + "분"
+        second_time.text = "두번째 시간: "+pref.getString("SecondHour", "0") + "시 " + pref.getString("SecondMinute", "0") + "분"
+        third_time.text = "세번째 시간: "+pref.getString("ThirdHour", "0") + "시 " + pref.getString("ThirdMinute", "0") + "분"
+        val curD = CurrentDevice(pref.getString("CurrentDevice", "0").toIntOrNull())
         apis.getValues("Bearer " + pref.getString("JWT", "error"), curD).enqueue(object : Callback<Getting>{
             override fun onResponse(call: Call<Getting>, response: Response<Getting>) {
                 if(response.body()!=null){
@@ -212,11 +212,11 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     override fun onResume() {
         super.onResume()
         val pref = PreferencesUtil(applicationContext)
-        bowl.text = ("현재 어항: " + pref.getString("CurrentDevice", "error"))
-        first_time.text = "첫번째 시간: " + pref.getInt("FirstHour", 0).toString() + "시 " + pref.getInt("FirstMinute", 0).toString() + "분, " + pref.getInt("FirstTotal", 0) + "회"
-        second_time.text = "두번째 시간: "+pref.getInt("SecondHour", 0).toString() + "시 " + pref.getInt("SecondMinute", 0).toString() + "분, "+ pref.getInt("SecondTotal", 0) + "회"
-        third_time.text = "세번째 시간: "+pref.getInt("ThirdHour", 0).toString() + "시 " + pref.getInt("ThirdMinute", 0).toString() + "분, "+ pref.getInt("ThirdTotal", 0) + "회"
-        val curD = CurrentDevice(pref.getString("CurrentDevice", "0").toLong())
+        bowl.text = ("현재 어항: " + pref.getString("CurrentDevice", "0"))
+        first_time.text = "첫번째 시간: " + pref.getString("FirstHour", "0") + "시 " + pref.getString("FirstMinute", "0") + "분, " + pref.getString("FirstTotal", "0") + "회"
+        second_time.text = "두번째 시간: "+pref.getString("SecondHour", "0") + "시 " + pref.getString("SecondMinute", "0") + "분, "+ pref.getString("SecondTotal", "0") + "회"
+        third_time.text = "세번째 시간: "+pref.getString("ThirdHour", "0") + "시 " + pref.getString("ThirdMinute", "0") + "분, "+ pref.getString("ThirdTotal", "0") + "회"
+        val curD = CurrentDevice(pref.getString("CurrentDevice", "0").toIntOrNull())
         apis.getValues("Bearer " + pref.getString("JWT", "error"), curD).enqueue(object : Callback<Getting>{
             override fun onResponse(call: Call<Getting>, response: Response<Getting>) {
                 if(response.body()!=null){
@@ -250,7 +250,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             pref.getString("hgt", "error").toInt(),
             pref.getString("ph", "error").toDouble(),
             pref.getString("drt", "error").toDouble(),
-            pref.getString("CurrentDevice", "error").toLong()
+            pref.getString("CurrentDevice", "error").toInt()
         )
         apis.settingValue("Bearer " + pref.getString("JWT", "error"), setting).enqueue(object : Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {
