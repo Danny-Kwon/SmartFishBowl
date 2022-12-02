@@ -31,7 +31,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_weight="2"
+        android:layout_weight="3"
         android:orientation="horizontal">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -48,7 +48,7 @@
                 android:solidColor="@color/white"
 
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@id/guideline_settime_50"
+                app:layout_constraintEnd_toStartOf="@id/numberPicker_min"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -62,8 +62,21 @@
                 android:solidColor="@color/white"
 
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/numberPicker_tot"
+                app:layout_constraintStart_toEndOf="@id/numberPicker_hour"
+                app:layout_constraintTop_toTopOf="parent" />
+            <NumberPicker
+
+                android:id="@+id/numberPicker_tot"
+                android:layout_width="wrap_content"
+                android:layout_height="120dp"
+                android:layout_marginStart="15dp"
+                android:layout_marginEnd="15dp"
+                android:solidColor="@color/white"
+
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@id/guideline_settime_50"
+                app:layout_constraintStart_toEndOf="@id/numberPicker_min"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
@@ -86,16 +99,17 @@
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="@id/numberPicker_min"
-                app:layout_constraintTop_toTopOf="parent"
-
-                />
-
-            <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/guideline_settime_50"
+                app:layout_constraintTop_toTopOf="parent" />
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.5" />
+                android:text="회"
+                android:textColor="@color/black"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@id/numberPicker_tot"
+                app:layout_constraintTop_toTopOf="parent" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
 
 

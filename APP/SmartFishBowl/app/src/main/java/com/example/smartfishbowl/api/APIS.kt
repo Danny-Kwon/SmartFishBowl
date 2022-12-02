@@ -27,7 +27,7 @@ interface APIS {
         @Body jsonparams: CurrentDevice
     ): Call<String>
 
-    @POST("later")
+    @POST("setUserSet")
     @Headers("accept: application/json",
         "content-type: application/json")
     fun settingValue(
@@ -35,7 +35,7 @@ interface APIS {
         @Body jsonparams: Setting
     ): Call<String>
 
-    @POST("later")
+    @POST("getSensingData")
     @Headers("accept: application/json",
         "content-type: application/json")
     fun getValues(
@@ -43,7 +43,7 @@ interface APIS {
         @Body jsonparams: CurrentDevice
     ): Call<Getting>
 
-    @POST("later")
+    @POST("setFeedTime")
     @Headers("accept: application/json",
         "content-type: application/json")
     fun setTime(

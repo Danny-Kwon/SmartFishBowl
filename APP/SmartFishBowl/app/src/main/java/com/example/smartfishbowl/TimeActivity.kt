@@ -45,11 +45,13 @@ class TimeActivity : AppCompatActivity() {
         val prefs = PreferencesUtil(this)
         var set: Int
         var set2: Int
+        var set3: Int
         val build = AlertDialog.Builder(this).create()
         val edialog : LayoutInflater = LayoutInflater.from(this)
         val mView : View = edialog.inflate(R.layout.timepick, null)
         val hour: NumberPicker = mView.findViewById(R.id.numberPicker_hour)
         val min : NumberPicker = mView.findViewById(R.id.numberPicker_min)
+        val tot : NumberPicker = mView.findViewById(R.id.numberPicker_tot)
         val confirm : Button = mView.findViewById(R.id.btn_settime_ok)
         val cancel : Button = mView.findViewById(R.id.btn_settime_no)
         with(hour){
@@ -72,8 +74,18 @@ class TimeActivity : AppCompatActivity() {
                 prefs.setInt("FirstMinute", set2)
             }
         }
+        with(tot){
+            minValue = 0
+            maxValue = 10
+            wrapSelectorWheel = false
+            descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+            setOnValueChangedListener{ _, _, i2 ->
+                set3 = i2
+                prefs.setInt("FirstTotal", set3)
+            }
+        }
         confirm.setOnClickListener{
-            Toast.makeText(this, "먹이 시간이 ${prefs.getInt("FirstHour", 0)}시 ${prefs.getInt("FirstMinute", 0)}분 으로 설정 되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "먹이 시간이 ${prefs.getInt("FirstHour", 0)}시 ${prefs.getInt("FirstMinute", 0)}분, ${prefs.getInt("FirstTotal", 0)}회 배급으로 설정 되었습니다.", Toast.LENGTH_SHORT).show()
             build.dismiss()
         }
         cancel.setOnClickListener{
@@ -92,11 +104,13 @@ class TimeActivity : AppCompatActivity() {
         val prefs = PreferencesUtil(this)
         var set: Int
         var set2: Int
+        var set3: Int
         val build = AlertDialog.Builder(this).create()
         val edialog : LayoutInflater = LayoutInflater.from(this)
         val mView : View = edialog.inflate(R.layout.timepick, null)
         val hour: NumberPicker = mView.findViewById(R.id.numberPicker_hour)
         val min : NumberPicker = mView.findViewById(R.id.numberPicker_min)
+        val tot : NumberPicker = mView.findViewById(R.id.numberPicker_tot)
         val confirm : Button = mView.findViewById(R.id.btn_settime_ok)
         val cancel : Button = mView.findViewById(R.id.btn_settime_no)
         with(hour){
@@ -119,8 +133,18 @@ class TimeActivity : AppCompatActivity() {
                 prefs.setInt("SecondMinute", set2)
             }
         }
+        with(tot){
+            minValue = 0
+            maxValue = 10
+            wrapSelectorWheel = false
+            descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+            setOnValueChangedListener{ _, _, i2 ->
+                set3 = i2
+                prefs.setInt("SecondTotal", set3)
+            }
+        }
         confirm.setOnClickListener{
-            Toast.makeText(this, "먹이 시간이 ${prefs.getInt("SecondHour", 0)}시 ${prefs.getInt("SecondMinute", 0)}분 으로 설정 되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "먹이 시간이 ${prefs.getInt("SecondHour", 0)}시 ${prefs.getInt("SecondMinute", 0)}분, ${prefs.getInt("SecondTotal", 0)}회 배급으로 설정 되었습니다.", Toast.LENGTH_SHORT).show()
             build.dismiss()
         }
         cancel.setOnClickListener{
@@ -139,11 +163,13 @@ class TimeActivity : AppCompatActivity() {
         val prefs = PreferencesUtil(this)
         var set: Int
         var set2: Int
+        var set3: Int
         val build = AlertDialog.Builder(this).create()
         val edialog : LayoutInflater = LayoutInflater.from(this)
         val mView : View = edialog.inflate(R.layout.timepick, null)
         val hour: NumberPicker = mView.findViewById(R.id.numberPicker_hour)
         val min : NumberPicker = mView.findViewById(R.id.numberPicker_min)
+        val tot : NumberPicker = mView.findViewById(R.id.numberPicker_tot)
         val confirm : Button = mView.findViewById(R.id.btn_settime_ok)
         val cancel : Button = mView.findViewById(R.id.btn_settime_no)
         with(hour){
@@ -166,8 +192,18 @@ class TimeActivity : AppCompatActivity() {
                 prefs.setInt("ThirdMinute", set2)
             }
         }
+        with(tot){
+            minValue = 0
+            maxValue = 10
+            wrapSelectorWheel = false
+            descendantFocusability = NumberPicker.FOCUS_BLOCK_DESCENDANTS
+            setOnValueChangedListener{ _, _, i2 ->
+                set3 = i2
+                prefs.setInt("ThirdTotal", set3)
+            }
+        }
         confirm.setOnClickListener{
-            Toast.makeText(this, "먹이 시간이 ${prefs.getInt("ThirdHour", 0)}시 ${prefs.getInt("ThirdMinute", 0)}분 으로 설정 되었습니다.", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "먹이 시간이 ${prefs.getInt("ThirdHour", 0)}시 ${prefs.getInt("ThirdMinute", 0)}분, ${prefs.getInt("ThirdTotal", 0)}회 배급으로 으로 설정 되었습니다.", Toast.LENGTH_SHORT).show()
             build.dismiss()
         }
         cancel.setOnClickListener{
@@ -189,7 +225,7 @@ class TimeActivity : AppCompatActivity() {
         val firstTime: LocalTime = LocalTime.of(pref.getInt("FirstHour", 0), pref.getInt("FirstMinute", 0))
         val secondTime: LocalTime = LocalTime.of(pref.getInt("SecondHour", 0), pref.getInt("SecondMinute", 0))
         val thirdTime: LocalTime = LocalTime.of(pref.getInt("SecondHour", 0), pref.getInt("ThirdMinute", 0))
-        val foodSetting = FoodSetting(pref.getString("CurrentDevice", "_").toLong(), firstTime, secondTime, thirdTime)
+        val foodSetting = FoodSetting(pref.getString("CurrentDevice", "_").toLong(), firstTime, secondTime, thirdTime, pref.getInt("FirstTotal", 0), pref.getInt("SecondTotal", 0), pref.getInt("ThirdTotal", 0))
             apis.setTime("Bearer " + pref.getString("JWT", "error"), foodSetting).enqueue(object : Callback<String>{
                 override fun onResponse(call: Call<String>, response: Response<String>) {
                     Log.d("Response", response.body().toString())
