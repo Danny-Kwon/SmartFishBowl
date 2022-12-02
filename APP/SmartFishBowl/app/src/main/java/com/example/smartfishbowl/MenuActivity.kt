@@ -50,19 +50,26 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
             user?.kakaoAccount?.email?.let { pref.setString("Email", it) }
             user?.kakaoAccount?.email?.let { Log.d("카카오이메일이름", it) }
         }
-        bowl.text = ("현재 어항: " + pref.getString("CurrentDevice", "error"))
-        val curD = CurrentDevice("", 1)
-        apis.getValues(curD).enqueue(object : Callback<Getting>{
+        bowl.text = "현재 어항: " + pref.getString("CurrentDevice", "error")
+        first_time.text = "첫번째 시간: " + pref.getInt("FirstHour", 0).toString() + "시 " + pref.getInt("FirstMinute", 0).toString() + "분"
+        second_time.text = "두번째 시간: "+pref.getInt("SecondHour", 0).toString() + "시 " + pref.getInt("SecondMinute", 0).toString() + "분"
+        third_time.text = "세번째 시간: "+pref.getInt("ThirdHour", 0).toString() + "시 " + pref.getInt("ThirdMinute", 0).toString() + "분"
+        val curD = CurrentDevice(pref.getString("JWT", "error"), pref.getString("CurrentDevice", "0").toLong())
+        apis.getValues("Bearer " + pref.getString("JWT", "error"), curD).enqueue(object : Callback<Getting>{
             override fun onResponse(call: Call<Getting>, response: Response<Getting>) {
                 if(response.body()!=null){
-                    tmp_cur.text = response.body()!!.tmp
-                    hgt_cur.text = response.body()!!.hgt
-                    ph_cur.text = response.body()!!.ph
-                    drt_cur.text = response.body()!!.drt
+                    tmp_cur.text = "현재 온도: "+response.body()!!.tmp+"℃"
+                    hgt_cur.text = "현재 수위: " + response.body()!!.hgt+"CM"
+                    ph_cur.text = "현재 PH: " + response.body()!!.ph
+                    drt_cur.text = "현재 탁도: " + response.body()!!.drt
                 }
             }
             override fun onFailure(call: Call<Getting>, t: Throwable) {
                 Log.d("Get_Values", t.message.toString())
+                tmp_cur.text = "현재 온도: _℃"
+                hgt_cur.text = "현재 수위: _CM"
+                ph_cur.text = "현재 PH: _"
+                drt_cur.text = "현재 탁도: _"
             }
         })
         change_tmp.setOnClickListener {
@@ -206,6 +213,27 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         super.onResume()
         val pref = PreferencesUtil(applicationContext)
         bowl.text = ("현재 어항: " + pref.getString("CurrentDevice", "error"))
+        first_time.text = "첫번째 시간: " + pref.getInt("FirstHour", 0).toString() + "시 " + pref.getInt("FirstMinute", 0).toString() + "분"
+        second_time.text = "두번째 시간: "+pref.getInt("SecondHour", 0).toString() + "시 " + pref.getInt("SecondMinute", 0).toString() + "분"
+        third_time.text = "세번째 시간: "+pref.getInt("ThirdHour", 0).toString() + "시 " + pref.getInt("ThirdMinute", 0).toString() + "분"
+        val curD = CurrentDevice(pref.getString("JWT", "error"), pref.getString("CurrentDevice", "0").toLong())
+        apis.getValues("Bearer " + pref.getString("JWT", "error"), curD).enqueue(object : Callback<Getting>{
+            override fun onResponse(call: Call<Getting>, response: Response<Getting>) {
+                if(response.body()!=null){
+                    tmp_cur.text = "현재 온도: "+response.body()!!.tmp+"℃"
+                    hgt_cur.text = "현재 수위: " + response.body()!!.hgt+"CM"
+                    ph_cur.text = "현재 PH: " + response.body()!!.ph
+                    drt_cur.text = "현재 탁도: " + response.body()!!.drt
+                }
+            }
+            override fun onFailure(call: Call<Getting>, t: Throwable) {
+                Log.d("Get_Values", t.message.toString())
+                tmp_cur.text = "현재 온도: _℃"
+                hgt_cur.text = "현재 수위: _CM"
+                ph_cur.text = "현재 PH: _"
+                drt_cur.text = "현재 탁도: _"
+            }
+        })
     }
 
     override fun onBackPressed() { //뒤로가기 처리
@@ -218,13 +246,12 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
     private fun settingValue(){
         val pref = PreferencesUtil(applicationContext)
         val setting = Setting(
-            pref.getString("JWT", "error"),
             pref.getString("tmp", "error"),
             pref.getString("hgt", "error"),
             pref.getString("ph", "error"),
             pref.getString("drt", "error")
         )
-        apis.settingValue(setting).enqueue(object : Callback<String>{
+        apis.settingValue("Bearer " + pref.getString("JWT", "error"), setting).enqueue(object : Callback<String>{
             override fun onResponse(call: Call<String>, response: Response<String>) {
                 Log.d("Setting_Response", response.body().toString())
             }

@@ -38,14 +38,13 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/fish_bowl"/>
+                    android:src="@drawable/fish"/>
                 <TextView
                     android:id="@+id/bowl"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="15sp"
-                    android:text="현재 어항: 1"/>
+                    android:textSize="15sp"/>
 
             </LinearLayout>
         </androidx.cardview.widget.CardView>
@@ -70,28 +69,25 @@
             <ImageView
                 android:layout_width="100dp"
                 android:layout_height="100dp"
-                android:src="@drawable/bowl_image"/>
+                android:src="@drawable/fish1"/>
                 <TextView
                     android:id="@+id/first_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="12sp"
-                    android:text="첫번째 시간: 3시 30분"/>
+                    android:textSize="12sp"/>
                 <TextView
                     android:id="@+id/second_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="12sp"
-                    android:text="두번째 시간: 6시 30분"/>
+                    android:textSize="12sp"/>
                 <TextView
                     android:id="@+id/third_time"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="12sp"
-                    android:text="세번째 시간: 9시 30분"/>
+                    android:textSize="12sp"/>
             </LinearLayout>
         </androidx.cardview.widget.CardView>
         <androidx.cardview.widget.CardView
@@ -115,21 +111,19 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/temperature"/>
+                    android:src="@drawable/tmp"/>
                 <TextView
                     android:id="@+id/tmp_cur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="15sp"
-                    android:text="현재 온도: 30℃"/>
+                    android:textSize="15sp"/>
                 <TextView
                     android:id="@+id/tmp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="15sp"
-                    android:text="희망 온도: 30℃"/>
+                    android:textSize="15sp"/>
                 <Button
                     android:id="@+id/change_tmp"
                     android:layout_width="wrap_content"
@@ -163,21 +157,19 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/water_height"/>
+                    android:src="@drawable/boat"/>
                 <TextView
                     android:id="@+id/hgt_cur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="15sp"
-                    android:text="현재 수위: 30CM"/>
+                    android:textSize="15sp"/>
                 <TextView
                     android:id="@+id/hgt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="15sp"
-                    android:text="희망 수위: 25CM"/>
+                    android:textSize="15sp"/>
                 <Button
                     android:id="@+id/change_hgt"
                     android:layout_width="wrap_content"
@@ -211,21 +203,19 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/ph"/>
+                    android:src="@drawable/whale"/>
                 <TextView
                     android:id="@+id/ph_cur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="15sp"
-                    android:text="현재 PH: 7"/>
+                    android:textSize="15sp"/>
                 <TextView
                     android:id="@+id/ph"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="15sp"
-                    android:text="희망 PH: 7"/>
+                    android:textSize="15sp"/>
                 <Button
                     android:id="@+id/change_ph"
                     android:layout_width="wrap_content"
@@ -259,21 +249,19 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:src="@drawable/pure"/>
+                    android:src="@drawable/dolphin"/>
                 <TextView
                     android:id="@+id/drt_cur"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="15sp"
-                    android:text="현재 탁도: 1"/>
+                    android:textSize="15sp"/>
                 <TextView
                     android:id="@+id/drt"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/bold"
-                    android:textSize="15sp"
-                    android:text="희망 탁도: 1"/>
+                    android:textSize="15sp"/>
                 <Button
                     android:id="@+id/change_drt"
                     android:layout_width="wrap_content"
