@@ -1,5 +1,6 @@
 package com.example.smartfishbowl
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -29,6 +30,7 @@ class ChangeActivity : AppCompatActivity() {
     private val binding by lazy {
         ActivityChangeBinding.inflate(layoutInflater)
     }
+    @SuppressLint("NotifyDataSetChanged")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)

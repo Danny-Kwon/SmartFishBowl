@@ -1,5 +1,6 @@
 package com.example.smartfishbowl
 
+import android.annotation.SuppressLint
 import android.content.DialogInterface
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +17,8 @@ import com.example.smartfishbowl.api.APIS
 import com.example.smartfishbowl.api.CurrentDevice
 import com.example.smartfishbowl.api.Getting
 import com.example.smartfishbowl.api.Setting
-import com.example.smartfishbowl.databinding.AlertdialogEdittextBinding
+import com.example.smartfishbowl.databinding.AlertdialogEdittextDecimalBinding
+import com.example.smartfishbowl.databinding.AlertdialogEdittextNumberBinding
 import com.example.smartfishbowl.sharedpreferences.PreferencesUtil
 import com.example.smartfishbowl.viewmodel.BowlViewModel
 import com.google.android.material.navigation.NavigationView
@@ -29,6 +31,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+@SuppressLint("SetTextI18n")
 class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelectedListener {
     lateinit var navigationView: NavigationView
     lateinit var drawerLayout: DrawerLayout
@@ -57,6 +60,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         Log.d("CURRENTDEVICE", pref.getString("CurrentDevice", "0"))
         val curD = CurrentDevice(pref.getString("CurrentDevice", "0").toLong())
         apis.getValues("Bearer " + pref.getString("JWT", "error"), curD).enqueue(object : Callback<Getting>{
+
             override fun onResponse(call: Call<Getting>, response: Response<Getting>) {
                 if(response.body()!=null){
                     tmp_cur.text = "현재 온도: "+response.body()!!.measuredTemperature+"℃"
@@ -75,7 +79,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         })
         change_tmp.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
+            val builderItem = AlertdialogEdittextDecimalBinding.inflate(layoutInflater)
             val edittext = builderItem.editText
             with(builder){
                 setTitle("적정 온도 변경")
@@ -84,7 +88,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setPositiveButton("확인"){ _: DialogInterface, _: Int ->
                     if(edittext.text!=null) {
                         tmp.text = "희망 온도: ${edittext.text} ℃"
-                        pref.setString("tmp", tmp.text.toString())
+                        pref.setString("tmp", edittext.text.toString())
                         settingValue()
                     }
                 }
@@ -96,7 +100,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         change_hgt.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
+            val builderItem = AlertdialogEdittextNumberBinding.inflate(layoutInflater)
             val edittext = builderItem.editText
             with(builder){
                 setTitle("적정 수위 변경")
@@ -105,7 +109,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setPositiveButton("확인"){ _: DialogInterface, _: Int ->
                     if(edittext.text!=null) {
                         hgt.text = "희망 수위: ${edittext.text} CM"
-                        pref.setString("hgt", hgt.text.toString())
+                        pref.setString("hgt", edittext.text.toString())
                         settingValue()
                     }
                 }
@@ -117,7 +121,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         change_ph.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
+            val builderItem = AlertdialogEdittextDecimalBinding.inflate(layoutInflater)
             val edittext = builderItem.editText
             with(builder){
                 setTitle("적정 PH 변경")
@@ -126,7 +130,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setPositiveButton("확인"){ _: DialogInterface, _: Int ->
                     if(edittext.text!=null) {
                         ph.text = "희망 PH: ${edittext.text}"
-                        pref.setString("ph", ph.text.toString())
+                        pref.setString("ph", edittext.text.toString())
                         settingValue()
                     }
                 }
@@ -138,7 +142,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
         }
         change_drt.setOnClickListener {
             val builder = AlertDialog.Builder(this)
-            val builderItem = AlertdialogEdittextBinding.inflate(layoutInflater)
+            val builderItem = AlertdialogEdittextDecimalBinding.inflate(layoutInflater)
             val edittext = builderItem.editText
             with(builder){
                 setTitle("적정 탁도 변경")
@@ -147,7 +151,7 @@ class MenuActivity : AppCompatActivity(), NavigationView.OnNavigationItemSelecte
                 setPositiveButton("확인"){ _: DialogInterface, _: Int ->
                     if(edittext.text!=null) {
                         drt.text = "희망 탁도: ${edittext.text}"
-                        pref.setString("drt", drt.text.toString())
+                        pref.setString("drt", edittext.text.toString())
                         settingValue()
                     }
                 }

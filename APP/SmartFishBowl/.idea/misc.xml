@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.223" />
+        <entry key="app/src/main/res/drawable/ic_baseline_check_24.xml" value="0.239" />
         <entry key="app/src/main/res/drawable/ic_baseline_horizontal_rule_24.xml" value="0.223" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.2355" />
         <entry key="app/src/main/res/drawable/log_out.xml" value="0.119" />
@@ -19,6 +20,8 @@
         <entry key="app/src/main/res/layout/activity_send_wifi.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/activity_time.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/alertdialog_edittext.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/alertdialog_edittext_decimal.xml" value="0.2520833333333333" />
+        <entry key="app/src/main/res/layout/alertdialog_edittext_number.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/bluetooth_recyclerview.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/bowl_grid_item.xml" value="0.2520833333333333" />
         <entry key="app/src/main/res/layout/drawer_header.xml" value="0.2520833333333333" />
